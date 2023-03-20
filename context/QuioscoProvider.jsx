@@ -120,9 +120,10 @@ const QuioscoProvider = ({children}) => {
 
 
 
-      const uploadFile = async (file) => {
+      const uploadFile = async (file, categoria) => {
         const formData = new FormData();
         formData.append("file", file);
+        formData.append("categoria", categoria);
       
         try {
           const response = await axios.post("/api/upload", formData, {
