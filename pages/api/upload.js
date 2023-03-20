@@ -14,6 +14,7 @@ function contarArchivos() {
         reject(error);
         return;
       }
+      
 
       archivos.forEach(archivo => {
         if (archivo.startsWith("cafe")) {
@@ -56,7 +57,9 @@ export default async function handler(
   req,
   res
 ) {
+
   try {
+    
     await new Promise((resolve, reject) => {
       upload.single("file")(req, res, (err) => {
         if (err) return reject(err);

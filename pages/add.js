@@ -8,25 +8,25 @@ export default function Add() {
   const { agregarProducto, uploadFile } = useQuiosco();
   const { register, handleSubmit, reset } = useForm();
   let cat = "";
-  const [imagen, setImagen] = useState(null); // Agrega esta línea
-
-  const handleImageUpload = (e) => {
-    console.log("Yo ya estoy")
-    setImagen(e.target.files[0]);
-    console.log(e.target.files[0]); // Agregar este console.log
-  };
 
 
-
-  const onSubmit = async ({ nombre, precio, file, categoria }) => {
+  const onSubmit = async ({ nombre, precio, file, categoriaId }) => {
     // Aquí puedes hacer lo que quieras con los datos del formulario
     try {
       const nombreImagen = await uploadFile(file[0]); // Se obtiene el nombre del archivo subido
-      // if (!nombreImagen) {
-      //   throw new Error("No se pudo subir la imagen");
-      // }
-      //await console.log(nombre, precio, nombreImagen, categoria); // Se pasa el nombre de la imagen como argumento
-      await console.log(nombreImagen)
+      const nombreImagenJson = JSON.parse(JSON.stringify(nombreImagen));
+      const imagen = nombreImagenJson.substring(0, nombreImagenJson.length - 4);
+
+      console.log(nombre, precio, imagen, categoriaId)
+try {
+  console.log("primero")
+  await agregarProducto(nombre, Number(precio), imagen, categoriaId); // Se pasa el nombre de la imagen como argumento
+  console.log("final")
+} catch (error) {
+  toast.error('no ejecuta agregar');
+  console.log(error)
+}
+      //await console.log(nombreImagen)
       toast.success('Producto agregado correctamente');
       reset();
     } catch (error) {
@@ -72,19 +72,19 @@ export default function Add() {
             Imagen
           </label>
           <input
-            type="file" name="file" id="file" onChange={handleImageUpload}
+            type="file" name="file" id="file" 
             {...register("file", { required: true })}
             className="w-full px-3 py-2 leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="categoria" className="block mb-2 font-bold text-gray-700">
+          <label htmlFor="categoriaId" className="block mb-2 font-bold text-gray-700">
             Categoría
           </label>
           <select
-            id="categoria"
-            {...register("categoria", { required: true })}
+            id="categoriaId"
+            {...register("categoriaId", { required: true })}
             className="w-full px-3 py-2 leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
           >
             <option value="">Seleccione una categoría</option>

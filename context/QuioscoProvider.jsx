@@ -101,29 +101,27 @@ const QuioscoProvider = ({children}) => {
 
     };
 
-    const agregarProducto = async () => {
-
+    const agregarProducto = async (nombre, precio, imagen, categoriaId) => {
         try {
-            await axios.post('/api/productos', {nombre, precio, file, categoriaId})
-
-            toast.success('Producto Añadido Correctamente')
-
-            setTimeout(() => {
-                router.push('/')
-            }, 3000)
-
+          console.log("antes de axios")
+          await axios.post('/api/create', { nombre, precio, imagen, categoriaId })
+          console.log("despues de axios")
+          toast.success('Producto Añadido Correctamente')
+      
+          setTimeout(() => {
+            router.push('/')
+          }, 3000)
         } catch (error) {
-            console.log(error)
+          toast.error('Producto con Error')
+          console.log(error)
         }
+      };
+      
 
-    };
 
-
-
-      const uploadFile = async (file, categoria) => {
+      const uploadFile = async (file) => {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("categoria", categoria);
       
         try {
           const response = await axios.post("/api/upload", formData, {
