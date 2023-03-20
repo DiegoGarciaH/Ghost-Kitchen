@@ -28,9 +28,6 @@ function contarArchivos() {
 }
 
 
-
-
-
 const storage = multer.diskStorage({
   destination: "public/assets/img/",
   filename: (req, file, cb) => {
@@ -70,7 +67,7 @@ export default async function handler(
     if (!file) throw new Error("File not provided");
     const filePath = path.join(process.cwd(), "public", "assets","img", file.filename);
     fs.renameSync(file.path, filePath);
-    res.status(200).json({ message: "Archivo subido correctamente" });
+    res.status(200).json({ message: "Archivo subido correctamente", name: file.filename });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ha ocurrido un error" });

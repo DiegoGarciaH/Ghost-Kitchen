@@ -14,7 +14,6 @@ const QuioscoProvider = ({children}) => {
     const [pedido, setPedido] = useState([])
     const [nombre, setNombre] = useState('')
     const [total, setTotal] = useState(0)
-    const [imagen, setImagen] = useState(null);
    
 
     const router = useRouter()
@@ -132,10 +131,12 @@ const QuioscoProvider = ({children}) => {
             },
           });
           toast.success('Imagen Guardada Correctamente');
-          console.log(response.data);
+         // console.log('Hola', response.data.name);
+          return response.data.name;
         } catch (error) {
           console.error(error);
-          toast.success('Error al guardar la imagen');
+          toast.error('Error al guardar la imagen');
+          return null
         }
       };
       
