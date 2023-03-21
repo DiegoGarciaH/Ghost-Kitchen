@@ -153,8 +153,50 @@ const QuioscoProvider = ({children}) => {
             console.log(error)
           }
       };
-      
 
+      const updateRegister = async ( id, nombre, precio, imagen, categoriaId ) => {
+        try {
+          console.log("antes de axios", id, nombre, precio, imagen, categoriaId)
+          const response = await axios.put('/api/update', {
+            id,
+            nombre,
+            precio,
+            imagen,
+            categoriaId,
+          });
+          console.log("despues de axios")
+          toast.success('Producto Actualizado Correctamente')
+          return response.data;
+        } catch (error) {
+          console.error(error);
+          toast.error('Producto No Actualizado')
+          throw new Error('No se pudo actualizar el registro.');
+        }
+      };
+
+
+      const getId = async () => {
+        try {
+          const response = await axios.get('/api/getIds');
+          return response.data;
+        } catch (error) {
+          console.error(error);
+          throw new Error('No se pudo obtener el registro.');
+        }
+      };
+      
+      const getData = async (id) => {
+        try {
+          const response = await axios.get('/api/getData', {
+            params: { id },
+          });
+          return response.data;
+        } catch (error) {
+          console.error(error);
+          throw new Error('No se pudo obtener el registro.');
+        }
+      };
+      
       
 
 
@@ -178,7 +220,10 @@ const QuioscoProvider = ({children}) => {
                 total,
                 agregarProducto,
                 uploadFile,
-                deleteRegister
+                deleteRegister,
+                updateRegister,
+                getId, 
+                getData
             }}
         >
             {children}
