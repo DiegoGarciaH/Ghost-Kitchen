@@ -138,6 +138,21 @@ const QuioscoProvider = ({children}) => {
           return null
         }
       };
+
+      const deleteRegister = async (id) => {
+        try {
+            
+            await axios.delete('/api/delete', { data: { id: id } })
+            toast.success('Producto Eliminado Correctamente')
+        
+            setTimeout(() => {
+              router.push('/')
+            }, 3000)
+          } catch (error) {
+            toast.error('Producto No Eliminado')
+            console.log(error)
+          }
+      };
       
 
       
@@ -162,7 +177,8 @@ const QuioscoProvider = ({children}) => {
                 colocarOrden,
                 total,
                 agregarProducto,
-                uploadFile
+                uploadFile,
+                deleteRegister
             }}
         >
             {children}

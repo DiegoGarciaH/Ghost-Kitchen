@@ -4,10 +4,11 @@ import useQuiosco from "../hooks/useQuiosco";
 
 const Producto = ({ producto }) => {
   const { handleSetProducto, handleChangeModal } = useQuiosco();
-  const { nombre, imagen, precio } = producto;
+  const { id, nombre, imagen, precio } = producto;
 
   return (
     <div className="border p-3">
+      <p className="mb-2 text-1xl font-bold text-rose-600">Identificador: {id}</p>
       <Image
         src={`/assets/img/${imagen}.jpg`}
         alt={`Imagen Platillo ${nombre}`}
