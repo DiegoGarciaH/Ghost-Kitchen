@@ -111,6 +111,7 @@ export default function Update() {
             type="number"
             placeholder="Precio"
             className="border-gray-300 rounded-md shadow-sm p-2 w-full"
+            step="0.01"
             {...register("precio")}
           />
         </div>

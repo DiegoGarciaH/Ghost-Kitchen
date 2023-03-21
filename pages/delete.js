@@ -25,7 +25,7 @@ export default function Delete() {
     return (
         <AdminLayout pagina={'Add'}>
             <h1 className="text-4xl font-black">Panel de Administracion</h1>
-            <p className="text-2xl my-10">Agrega Platillos</p>
+            <p className="text-2xl my-10">Elimine Platillos</p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg mx-auto" encType="multipart/form-data">
                 <div className="mb-4">

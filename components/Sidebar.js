@@ -8,8 +8,8 @@ const Sidebar = () => {
   return (
     <>
       <Image
-        width={300}
-        height={100}
+        width={250}
+        height={70}
         src="/assets/img/logo.svg"
         alt="imagen logotipo"
       />
