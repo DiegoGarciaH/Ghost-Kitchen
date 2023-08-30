@@ -12,8 +12,8 @@ const Categoria = ({ categoria }) => {
       } flex items-center gap-4 w-full border p-5 hover:bg-amber-400`}
     >
       <Image
-        width={40}
-        height={40}
+        width={25}
+        height={25}
         src={`/assets/img/icono_${icono}.svg`}
         alt="Imagen Icono"
       />

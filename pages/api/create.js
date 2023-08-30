@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-
 const config = {
   api: {
     bodyParser: {
@@ -7,7 +6,6 @@ const config = {
     },
   },
 };
-
 export default async function handler(req, res) {
   const prisma = new PrismaClient();
 
@@ -28,7 +26,6 @@ export default async function handler(req, res) {
           },
         },
       });
-
       // Devolver producto creado
       res.status(201).json(producto);
     } catch (error) {
